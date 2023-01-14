@@ -1,46 +1,91 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  //creamos la lista de preguntas
+  List<String> questions = [
+    "La tierra es plana.",
+    "El hombre llegó a la luna.",
+    "Soy millonario."
+  ];
+
+  //creamos una lista de widgets para mostrar el score de aciertos
+  List<Widget> scoreKeeper = [
+    Icon(
+      Icons.check,
+      color: Color(0xff3bceac),
+      size: 30.0,
+    ),
+    Icon(
+      Icons.close,
+      color: Color(0xfffe6d73),
+      size: 30.0,
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xff2b2d42),
       body: Column(
         //para poder alargar los botones de Verdadero y Falso
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const Expanded(
+          Expanded(
             flex: 9,
             child: Center(
               child: Padding(
                 padding: EdgeInsets.all(6.0),
                 child: Text(
-                  "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
+                  questions[1],
                   textAlign: TextAlign.center,
-                  style: TextStyle(fontSize: 22.0),
+                  style: TextStyle(fontSize: 22.0, color: Colors.white),
                 ),
               ),
             ),
           ),
           Expanded(
-            child: MaterialButton(
-              onPressed: () {},
-              color: Colors.blue,
-              child: const Text(
-                "Verdadero",
+            //hacemos que el botón tenga margen
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: MaterialButton(
+                onPressed: () {
+                  scoreKeeper.add(
+                    Icon(
+                      Icons.close,
+                      color: Colors.white,
+                    ),
+                  );
+                  setState(() {});
+                },
+                color: Colors.green,
+                child: const Text(
+                  "Verdadero",
+                ),
               ),
             ),
           ),
           Expanded(
-            child: MaterialButton(
-              onPressed: () {},
-              color: Colors.red,
-              child: const Text(
-                "Falso",
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: MaterialButton(
+                onPressed: () {},
+                color: Colors.red,
+                child: const Text(
+                  "Falso",
+                ),
               ),
             ),
           ),
 //          ElevatedButton(onPressed: () {}, child: Text("Hola")),
 //          ElevatedButton(onPressed: () {}, child: Text("Hola")),
+          Row(
+            children: scoreKeeper,
+          ),
         ],
       ),
     );
