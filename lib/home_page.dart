@@ -5,12 +5,14 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
+        //para poder alargar los botones de Verdadero y Falso
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Expanded(
+          const Expanded(
             flex: 9,
             child: Center(
               child: Padding(
-                padding: const EdgeInsets.all(6.0),
+                padding: EdgeInsets.all(6.0),
                 child: Text(
                   "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
                   textAlign: TextAlign.center,
@@ -23,7 +25,7 @@ class HomePage extends StatelessWidget {
             child: MaterialButton(
               onPressed: () {},
               color: Colors.blue,
-              child: Text(
+              child: const Text(
                 "Verdadero",
               ),
             ),
@@ -32,7 +34,7 @@ class HomePage extends StatelessWidget {
             child: MaterialButton(
               onPressed: () {},
               color: Colors.red,
-              child: Text(
+              child: const Text(
                 "Falso",
               ),
             ),
