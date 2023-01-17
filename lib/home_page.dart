@@ -1,6 +1,5 @@
-import 'package:codigo6_quiz/question.dart';
-import 'package:codigo6_quiz/quiz_brain.dart';
 import 'package:flutter/material.dart';
+import 'package:codigo6_quiz/quiz_brain.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -42,7 +41,7 @@ class _HomePageState extends State<HomePage> {
               child: Padding(
                 padding: EdgeInsets.all(6.0),
                 child: Text(
-                  pregunta.questions[questionNumber].questionText,
+                  pregunta.getQuestionText(questionNumber),
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 22.0, color: Colors.white),
                 ),
@@ -58,7 +57,7 @@ class _HomePageState extends State<HomePage> {
                 onPressed: () {
                   //capturamos la respuesta a la pregunta realizada
                   bool correctAnswer =
-                      pregunta.questions[questionNumber].questionAnswer;
+                      pregunta.getQuestionAnswer(questionNumber);
                   //hacemos la comparación de la respuesta correcta a la pregunta
                   if (correctAnswer == true) {
                     scoreKeeper.add(Icon(
@@ -89,7 +88,7 @@ class _HomePageState extends State<HomePage> {
                 onPressed: () {
                   //capturamos la respuesta a la pregunta realizada
                   bool correctAnswer =
-                      pregunta.questions[questionNumber].questionAnswer;
+                      pregunta.getQuestionAnswer(questionNumber);
                   //hacemos la comparación de la respuesta correcta a la pregunta
                   if (correctAnswer == false) {
                     scoreKeeper.add(Icon(
