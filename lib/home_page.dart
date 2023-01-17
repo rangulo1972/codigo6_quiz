@@ -1,3 +1,4 @@
+import 'package:codigo6_quiz/question.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -8,6 +9,17 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   //cramos el puntero de posición para el listado de preguntas
   int questionNumber = 0;
+  List<Question> questions = [
+    Question(questionText: "La tierra es plana.", questionAnswer: false),
+    Question(questionText: "El hombre llegó a la luna.", questionAnswer: true),
+    Question(questionText: "Los meses del año son 13.", questionAnswer: false),
+    Question(
+        questionText: "Un años bisiesto es cada 3 años.",
+        questionAnswer: false),
+    Question(
+        questionText: "Los colores primarios son 4.", questionAnswer: false),
+  ];
+  /*
   //creamos la lista de preguntas
   List<String> questions = [
     "La tierra es plana.", //false
@@ -18,6 +30,7 @@ class _HomePageState extends State<HomePage> {
   ];
   //creamos listado de respuestas
   List<bool> answers = [false, true, false, false, false];
+  */
 
   //creamos una lista de widgets para mostrar el score de aciertos
   List<Icon> scoreKeeper = [];
@@ -36,7 +49,7 @@ class _HomePageState extends State<HomePage> {
               child: Padding(
                 padding: EdgeInsets.all(6.0),
                 child: Text(
-                  questions[questionNumber],
+                  questions[questionNumber].questionText,
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 22.0, color: Colors.white),
                 ),
@@ -51,7 +64,7 @@ class _HomePageState extends State<HomePage> {
               child: MaterialButton(
                 onPressed: () {
                   //capturamos la respuesta a la pregunta realizada
-                  bool correctAnswer = answers[questionNumber];
+                  bool correctAnswer = questions[questionNumber].questionAnswer;
                   //hacemos la comparación de la respuesta correcta a la pregunta
                   if (correctAnswer == true) {
                     scoreKeeper.add(Icon(
@@ -81,7 +94,7 @@ class _HomePageState extends State<HomePage> {
               child: MaterialButton(
                 onPressed: () {
                   //capturamos la respuesta a la pregunta realizada
-                  bool correctAnswer = answers[questionNumber];
+                  bool correctAnswer = questions[questionNumber].questionAnswer;
                   //hacemos la comparación de la respuesta correcta a la pregunta
                   if (correctAnswer == false) {
                     scoreKeeper.add(Icon(
