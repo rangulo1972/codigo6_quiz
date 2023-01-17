@@ -8,24 +8,28 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   //cramos el puntero de posición para el listado de preguntas
-
   QuizBrain pregunta = QuizBrain();
-
-  /*
-  //creamos la lista de preguntas
-  List<String> questions = [
-    "La tierra es plana.", //false
-    "El hombre llegó a la luna.", //true
-    "Los meses del año son 13", //false
-    "Un año bisiesto es cada 3 años", //false
-    "Los colores primarios son 4", //false
-  ];
-  //creamos listado de respuestas
-  List<bool> answers = [false, true, false, false, false];
-  */
-
   //creamos una lista de widgets para mostrar el score de aciertos
   List<Icon> scoreKeeper = [];
+  //creamos la función que realizará la verificación de las respuestas
+  void checkQuestion(bool type) {
+    //capturamos la respuesta a la pregunta realizada
+    bool correctAnswer = pregunta.getQuestionAnswer();
+    //hacemos la comparación de la respuesta correcta a la pregunta
+    if (correctAnswer == type) {
+      scoreKeeper.add(Icon(
+        Icons.check,
+        color: Colors.green,
+      ));
+    } else {
+      scoreKeeper.add(Icon(
+        Icons.close,
+        color: Colors.red,
+      ));
+    }
+    setState(() {});
+    pregunta.nextQuestion();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,23 +59,8 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.all(8.0),
               child: MaterialButton(
                 onPressed: () {
-                  //capturamos la respuesta a la pregunta realizada
-                  bool correctAnswer = pregunta.getQuestionAnswer();
-                  //hacemos la comparación de la respuesta correcta a la pregunta
-                  if (correctAnswer == true) {
-                    scoreKeeper.add(Icon(
-                      Icons.check,
-                      color: Colors.green,
-                    ));
-                  } else {
-                    scoreKeeper.add(Icon(
-                      Icons.close,
-                      color: Colors.red,
-                    ));
-                  }
-                  setState(() {});
-                  pregunta.nextQuestion();
-                },
+                  checkQuestion(true);
+                }, //end onPreseed
                 color: Colors.green,
                 child: const Text(
                   "Verdadero",
@@ -85,23 +74,8 @@ class _HomePageState extends State<HomePage> {
               padding: const EdgeInsets.all(8.0),
               child: MaterialButton(
                 onPressed: () {
-                  //capturamos la respuesta a la pregunta realizada
-                  bool correctAnswer = pregunta.getQuestionAnswer();
-                  //hacemos la comparación de la respuesta correcta a la pregunta
-                  if (correctAnswer == false) {
-                    scoreKeeper.add(Icon(
-                      Icons.check,
-                      color: Colors.green,
-                    ));
-                  } else {
-                    scoreKeeper.add(Icon(
-                      Icons.close,
-                      color: Colors.red,
-                    ));
-                  }
-                  setState(() {});
-                  pregunta.nextQuestion();
-                },
+                  checkQuestion(false);
+                }, //end onPressed
                 color: Colors.red,
                 child: const Text(
                   "Falso",
@@ -109,8 +83,6 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
           ),
-//          ElevatedButton(onPressed: () {}, child: Text("Hola")),
-//          ElevatedButton(onPressed: () {}, child: Text("Hola")),
           Row(
             children: scoreKeeper,
           ),
