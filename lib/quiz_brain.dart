@@ -12,13 +12,19 @@ class QuizBrain {
         questionText: "Los colores primarios son 4.", questionAnswer: false),
   ];
 
+  int questionNumber = 0;
+
   //creamos funciones que nos retorne el texto de una pregunta de acuerdo a su posición.
-  String getQuestionText(int position) {
-    return _questions[position].questionText;
+  String getQuestionText() {
+    return _questions[questionNumber].questionText;
   }
 
   //creamos funciones que nos retorne la respuesta una pregunta de acuerdo a su posición.
-  bool getQuestionAnswer(int position) {
-    return _questions[position].questionAnswer;
+  bool getQuestionAnswer() {
+    return _questions[questionNumber].questionAnswer;
+  }
+
+  void nextQuestion() {
+    questionNumber++;
   }
 }

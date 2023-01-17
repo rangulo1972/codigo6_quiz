@@ -8,7 +8,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   //cramos el puntero de posición para el listado de preguntas
-  int questionNumber = 0;
+
   QuizBrain pregunta = QuizBrain();
 
   /*
@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
               child: Padding(
                 padding: EdgeInsets.all(6.0),
                 child: Text(
-                  pregunta.getQuestionText(questionNumber),
+                  pregunta.getQuestionText(),
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 22.0, color: Colors.white),
                 ),
@@ -56,8 +56,7 @@ class _HomePageState extends State<HomePage> {
               child: MaterialButton(
                 onPressed: () {
                   //capturamos la respuesta a la pregunta realizada
-                  bool correctAnswer =
-                      pregunta.getQuestionAnswer(questionNumber);
+                  bool correctAnswer = pregunta.getQuestionAnswer();
                   //hacemos la comparación de la respuesta correcta a la pregunta
                   if (correctAnswer == true) {
                     scoreKeeper.add(Icon(
@@ -71,7 +70,7 @@ class _HomePageState extends State<HomePage> {
                     ));
                   }
                   setState(() {});
-                  questionNumber++;
+                  pregunta.nextQuestion();
                 },
                 color: Colors.green,
                 child: const Text(
@@ -87,8 +86,7 @@ class _HomePageState extends State<HomePage> {
               child: MaterialButton(
                 onPressed: () {
                   //capturamos la respuesta a la pregunta realizada
-                  bool correctAnswer =
-                      pregunta.getQuestionAnswer(questionNumber);
+                  bool correctAnswer = pregunta.getQuestionAnswer();
                   //hacemos la comparación de la respuesta correcta a la pregunta
                   if (correctAnswer == false) {
                     scoreKeeper.add(Icon(
@@ -102,7 +100,7 @@ class _HomePageState extends State<HomePage> {
                     ));
                   }
                   setState(() {});
-                  questionNumber++;
+                  pregunta.nextQuestion();
                 },
                 color: Colors.red,
                 child: const Text(
