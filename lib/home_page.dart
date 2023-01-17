@@ -10,7 +10,9 @@ class _HomePageState extends State<HomePage> {
   List<String> questions = [
     "La tierra es plana.",
     "El hombre llegó a la luna.",
-    "Soy millonario."
+    "Los meses del año son 13",
+    "Un año bisiesto es cada 3 años",
+    "Los colores primarios son 4",
   ];
 
   //creamos una lista de widgets para mostrar el score de aciertos
