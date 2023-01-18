@@ -12,26 +12,30 @@ class QuizBrain {
         questionText: "Los colores primarios son 4.", questionAnswer: false),
   ];
 
-  int questionNumber = 0;
+  int _questionNumber = 0;
 
   //creamos funciones que nos retorne el texto de una pregunta de acuerdo a su posición.
   String getQuestionText() {
-    return _questions[questionNumber].questionText;
+    return _questions[_questionNumber].questionText;
   }
 
   //creamos funciones que nos retorne la respuesta una pregunta de acuerdo a su posición.
   bool getQuestionAnswer() {
-    return _questions[questionNumber].questionAnswer;
+    return _questions[_questionNumber].questionAnswer;
   }
 
   void nextQuestion() {
-    questionNumber++;
+    _questionNumber++;
   }
 
   bool isFinished() {
-    if (questionNumber >= _questions.length - 1) {
+    if (_questionNumber >= _questions.length - 1) {
       return true;
     }
     return false;
+  }
+
+  void restar() {
+    _questionNumber = 0;
   }
 }

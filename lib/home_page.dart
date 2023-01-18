@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:codigo6_quiz/quiz_brain.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -14,7 +15,27 @@ class _HomePageState extends State<HomePage> {
   //creamos la función que realizará la verificación de las respuestas
   void checkQuestion(bool type) {
     if (pregunta.isFinished() == true) {
-      print("El juego ha terminado");
+      Alert(
+        context: context,
+        type: AlertType.success,
+        title: "Quiz Finalizado",
+        desc: "Deseas reiniciar nuevamente?.",
+        buttons: [
+          DialogButton(
+            child: Text(
+              "Reiniciar",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: () {
+              pregunta.restar();
+              scoreKeeper.clear();
+              Navigator.pop(context);
+              setState(() {});
+            },
+            width: 120,
+          )
+        ],
+      ).show();
     } else {
       //capturamos la respuesta a la pregunta realizada
       bool correctAnswer = pregunta.getQuestionAnswer();
