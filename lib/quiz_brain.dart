@@ -27,4 +27,11 @@ class QuizBrain {
   void nextQuestion() {
     questionNumber++;
   }
+
+  bool isFinished() {
+    if (questionNumber >= _questions.length - 1) {
+      return true;
+    }
+    return false;
+  }
 }

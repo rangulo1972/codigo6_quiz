@@ -13,22 +13,26 @@ class _HomePageState extends State<HomePage> {
   List<Icon> scoreKeeper = [];
   //creamos la función que realizará la verificación de las respuestas
   void checkQuestion(bool type) {
-    //capturamos la respuesta a la pregunta realizada
-    bool correctAnswer = pregunta.getQuestionAnswer();
-    //hacemos la comparación de la respuesta correcta a la pregunta
-    if (correctAnswer == type) {
-      scoreKeeper.add(Icon(
-        Icons.check,
-        color: Colors.green,
-      ));
+    if (pregunta.isFinished() == true) {
+      print("El juego ha terminado");
     } else {
-      scoreKeeper.add(Icon(
-        Icons.close,
-        color: Colors.red,
-      ));
+      //capturamos la respuesta a la pregunta realizada
+      bool correctAnswer = pregunta.getQuestionAnswer();
+      //hacemos la comparación de la respuesta correcta a la pregunta
+      if (correctAnswer == type) {
+        scoreKeeper.add(Icon(
+          Icons.check,
+          color: Colors.green,
+        ));
+      } else {
+        scoreKeeper.add(Icon(
+          Icons.close,
+          color: Colors.red,
+        ));
+      }
+      setState(() {});
+      pregunta.nextQuestion();
     }
-    setState(() {});
-    pregunta.nextQuestion();
   }
 
   @override
